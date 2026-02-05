@@ -187,14 +187,6 @@ export default function App() {
                 >
                   {resumeReady ? "Download CV" : "CV unavailable"}
                 </a>
-                {repoUrl && (
-                  <a
-                    href={repoUrl}
-                    className="btn-secondary"
-                  >
-                    GitHub Repo
-                  </a>
-                )}
                 <button
                   type="button"
                   onClick={() => setDarkMode((prev) => !prev)}
