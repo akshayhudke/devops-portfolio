@@ -1,0 +1,76 @@
+meta:
+  updated: 2026-02-05
+  build_badge_workflow: ci.yml
+basics:
+  name: Akshay Hudke
+  role: Platform / Site Reliability Engineer
+  summary: >-
+    Platform / Site Reliability Engineer with 5+ years of experience designing,
+    automating, and operating cloud-native production systems on AWS and Azure.
+    Strong background in infrastructure as code, CI/CD automation, container
+    orchestration, and observability, with a focus on reliability, scalability,
+    and reducing operational toil.
+  email: hudkeakshay@gmail.com
+  phone: +91-7769858656
+  linkedin: https://linkedin.com/in/akshayhudke
+  location:
+    city: Pune
+    region: Maharashtra
+    country: India
+highlights:
+  - 5+ years building and operating cloud-native systems on AWS and Azure.
+  - Infrastructure as code, CI/CD automation, and container orchestration focus.
+  - Reliability, scalability, and observability-first execution.
+skills:
+  - category: Cloud
+    items:
+      - AWS
+      - Azure
+  - category: Platform & DevOps
+    items:
+      - Docker
+      - Kubernetes
+      - OpenShift
+      - Terraform
+      - Ansible
+      - GitHub Actions
+      - Jenkins
+      - Bamboo
+      - Argo CD
+  - category: Observability
+    items:
+      - Dynatrace
+      - Grafana
+  - category: Data Engineering
+    items:
+      - Apache Spark
+  - category: Scripting
+    items:
+      - Python
+      - Bash
+experience:
+  - company: Volkswagen Group Digital Solutions
+    location: Pune, Maharashtra, India
+    role: DevOps Engineer
+    start: ""
+    end: ""
+    bullets:
+      - Designed and operated cloud-native infrastructure on AWS and Azure.
+      - Engineered CI/CD systems using Docker and OpenShift.
+      - Automated workflows using Ansible and shell scripting.
+      - Implemented observability using Dynatrace.
+      - Built distributed ETL pipelines using Apache Spark.
+  - company: Thinkbridge Software
+    location: Pune, Maharashtra, India
+    role: Associate DevOps Engineer
+    start: ""
+    end: ""
+    bullets:
+      - Managed AWS and Azure infrastructure.
+      - Implemented infrastructure as code using Terraform.
+      - Built CI/CD pipelines using GitHub Actions.
+      - Optimized workloads on ECS Fargate.
+education:
+  - institution: Priyadarshini College of Engineering
+    degree: Bachelor of Engineering
+    end: 2019
