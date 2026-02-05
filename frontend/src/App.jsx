@@ -183,18 +183,14 @@ export default function App() {
                   }}
                   download={resumeReady}
                   aria-disabled={!resumeReady}
-                  className={`inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium transition ${
-                    resumeReady
-                      ? "text-text hover:text-accent"
-                      : "cursor-not-allowed text-muted opacity-60"
-                  }`}
+                  className={resumeReady ? "btn-primary" : "btn-primary opacity-60"}
                 >
                   {resumeReady ? "Download CV" : "CV unavailable"}
                 </a>
                 {repoUrl && (
                   <a
                     href={repoUrl}
-                    className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-muted hover:text-text transition"
+                    className="btn-secondary"
                   >
                     GitHub Repo
                   </a>
@@ -202,7 +198,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setDarkMode((prev) => !prev)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-muted hover:text-text transition"
+                  className="btn-contrast"
                 >
                   <span>Theme</span>
                   <span className="font-mono text-[11px]">

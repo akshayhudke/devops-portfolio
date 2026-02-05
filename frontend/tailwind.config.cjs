@@ -36,7 +36,7 @@ module.exports = {
         border: "rgb(var(--border))",
       },
       boxShadow: {
-        soft: "0 20px 60px -40px rgba(0, 0, 0, 0.6)",
+        soft: "0 30px 80px -50px rgba(15, 23, 42, 0.35)",
       },
     },
   },
