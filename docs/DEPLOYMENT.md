@@ -79,6 +79,7 @@ Frontend build args (Vite uses these at build time):
 - `VITE_GIT_COMMIT`: Commit SHA used for UI footer.
 - `VITE_BUILD_TIME`: Build timestamp string for UI footer.
 - `VITE_BASE_PATH`: Base path for GitHub Pages (usually `/<repo-name>/`).
+- `VITE_RESUME_FILENAME`: Optional file name for the CV download button.
 
 ## 3. Local Run With Docker Compose (optional)
 ```

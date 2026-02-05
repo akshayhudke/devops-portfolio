@@ -1,0 +1,30 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6efff" />
+      <stop offset="50%" stop-color="#f5f7fb" />
+      <stop offset="100%" stop-color="#eef3ff" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b5cff" />
+      <stop offset="100%" stop-color="#5aaaff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="48" fill="url(#bg)" />
+  <circle cx="980" cy="120" r="160" fill="#dbe8ff" />
+  <circle cx="220" cy="520" r="200" fill="#e9f0ff" />
+  <rect x="96" y="120" width="1008" height="390" rx="36" fill="white" fill-opacity="0.82" />
+  <text x="150" y="240" fill="#0f172a" font-size="52" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-weight="600">
+    Akshay Hudke
+  </text>
+  <text x="150" y="290" fill="#334155" font-size="28" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif">
+    Platform / Site Reliability Engineer
+  </text>
+  <text x="150" y="355" fill="#475569" font-size="22" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif">
+    DevOps-first portfolio showcasing reliability, automation, and cloud-native delivery.
+  </text>
+  <rect x="150" y="390" width="300" height="44" rx="22" fill="url(#accent)" />
+  <text x="170" y="420" fill="white" font-size="18" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-weight="600">
+    akshayhudke.github.io
+  </text>
+</svg>

@@ -7,7 +7,11 @@ const healthUrl = `${apiBase}/health`;
 const buildTime = import.meta.env.VITE_BUILD_TIME || "unknown";
 const gitCommit = import.meta.env.VITE_GIT_COMMIT || "unknown";
 const repoSlug = import.meta.env.VITE_GITHUB_REPO || "";
-const resumeDownloadUrl = `${import.meta.env.BASE_URL}Akshay_Hudke_Platform_SRE_Engineer.pdf`;
+const resumeFileCandidates = [
+  import.meta.env.VITE_RESUME_FILENAME,
+  "Akshay_Hudke_Platform_SRE_Engineer.pdf",
+  "resume.pdf",
+].filter(Boolean);
 
 const formatRange = (start, end) => {
   if (!start && !end) return "";
@@ -24,11 +28,45 @@ export default function App() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+  const [resumeDownloadUrl, setResumeDownloadUrl] = useState("");
 
   useEffect(() => {
     const stored = window.localStorage.getItem("theme");
     const isDark = stored ? stored === "dark" : false;
     setDarkMode(isDark);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    const base = import.meta.env.BASE_URL || "/";
+
+    async function resolveResumeUrl() {
+      for (const filename of resumeFileCandidates) {
+        const url = `${base}${filename}`;
+        try {
+          const response = await fetch(url, { method: "HEAD" });
+          if (response.ok) {
+            if (isMounted) setResumeDownloadUrl(url);
+            return;
+          }
+          if (response.status === 405) {
+            const getResponse = await fetch(url);
+            if (getResponse.ok && isMounted) {
+              setResumeDownloadUrl(url);
+              return;
+            }
+          }
+        } catch (_) {
+          // Ignore and try next candidate.
+        }
+      }
+    }
+
+    resolveResumeUrl();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -114,6 +152,7 @@ export default function App() {
         ? "text-amber-500"
         : "text-muted";
   const repoUrl = repoSlug ? `https://github.com/${repoSlug}` : "";
+  const resumeReady = Boolean(resumeDownloadUrl);
 
   const contactItems = [
     { label: "Email", value: basics.email, href: basics.email ? `mailto:${basics.email}` : "" },
@@ -138,11 +177,19 @@ export default function App() {
               <p className="kicker">Profile</p>
               <div className="flex flex-wrap items-center gap-2">
                 <a
-                  href={resumeDownloadUrl}
-                  download
-                  className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-text hover:text-accent transition"
+                  href={resumeReady ? resumeDownloadUrl : "#"}
+                  onClick={(event) => {
+                    if (!resumeReady) event.preventDefault();
+                  }}
+                  download={resumeReady}
+                  aria-disabled={!resumeReady}
+                  className={`inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium transition ${
+                    resumeReady
+                      ? "text-text hover:text-accent"
+                      : "cursor-not-allowed text-muted opacity-60"
+                  }`}
                 >
-                  Download CV
+                  {resumeReady ? "Download CV" : "CV unavailable"}
                 </a>
                 {repoUrl && (
                   <a
@@ -262,7 +309,7 @@ export default function App() {
                       {formatRange(role.start, role.end)}
                     </div>
                   </div>
-                  <ul className="mt-4 list-disc list-inside text-sm text-muted space-y-2">
+                  <ul className="mt-4 list-disc list-outside pl-5 text-sm text-muted space-y-2">
                     {safeArray(role.bullets).map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}
