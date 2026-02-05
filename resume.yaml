@@ -97,6 +97,6 @@ education:
     end: 2019
     location: Nagpur, India
 certifications:
-  - name: Microsoft Certified: Azure Fundamentals (AZ-900)
+  - name: "Microsoft Certified: Azure Fundamentals (AZ-900)"
     issuer: Microsoft
     year: 2023
