@@ -256,32 +256,34 @@ export default function App() {
           </div>
         </section>
 
-        <section>
-          <p className="section-title">Projects</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            {safeArray(resume.projects).map((project) => (
-              <div key={project.name} className="card p-6">
-                <h3 className="text-lg font-semibold">{project.name}</h3>
-                <p className="text-sm text-muted mt-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {safeArray(project.stack).map((item) => (
-                    <span key={item} className="tag">
-                      {item}
-                    </span>
-                  ))}
+        {safeArray(resume.projects).length > 0 && (
+          <section>
+            <p className="section-title">Projects</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              {safeArray(resume.projects).map((project) => (
+                <div key={project.name} className="card p-6">
+                  <h3 className="text-lg font-semibold">{project.name}</h3>
+                  <p className="text-sm text-muted mt-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {safeArray(project.stack).map((item) => (
+                      <span key={item} className="tag">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  {project.links?.repo && (
+                    <a
+                      className="text-sm text-accent hover:text-accent2 mt-4 inline-flex"
+                      href={project.links.repo}
+                    >
+                      View repo
+                    </a>
+                  )}
                 </div>
-                {project.links?.repo && (
-                  <a
-                    className="text-sm text-accent hover:text-accent2 mt-4 inline-flex"
-                    href={project.links.repo}
-                  >
-                    View repo
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section>
           <p className="section-title">Skills</p>
