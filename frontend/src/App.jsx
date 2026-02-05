@@ -142,7 +142,7 @@ export default function App() {
                 {meta.tagline && <span className="tag">{meta.tagline}</span>}
               </div>
             </div>
-            <div className="flex flex-col gap-3 min-w-[220px]">
+            <div className="flex flex-col gap-3 sm:min-w-[220px]">
               <button
                 type="button"
                 onClick={() => setDarkMode((prev) => !prev)}
@@ -169,22 +169,29 @@ export default function App() {
             {contactItems.map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between gap-3 rounded-xl border border-border px-4 py-3 text-sm text-muted"
+                className="flex flex-col items-start gap-2 rounded-xl border border-border px-4 py-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
               >
                 <span>{item.label}</span>
                 {item.href ? (
-                  <a href={item.href} className="text-text hover:text-accent">
+                  <a
+                    href={item.href}
+                    className="w-full break-all text-text hover:text-accent sm:w-auto sm:text-right sm:break-words"
+                  >
                     {item.value}
                   </a>
                 ) : (
-                  <span className="text-text">{item.value}</span>
+                  <span className="w-full break-all text-text sm:w-auto sm:text-right sm:break-words">
+                    {item.value}
+                  </span>
                 )}
               </div>
             ))}
             {locationParts.length > 0 && (
-              <div className="flex items-center justify-between gap-3 rounded-xl border border-border px-4 py-3 text-sm text-muted">
+              <div className="flex flex-col items-start gap-2 rounded-xl border border-border px-4 py-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
                 <span>Location</span>
-                <span className="text-text">{locationParts.join(", ")}</span>
+                <span className="w-full break-words text-text sm:w-auto sm:text-right">
+                  {locationParts.join(", ")}
+                </span>
               </div>
             )}
           </div>
