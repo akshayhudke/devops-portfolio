@@ -1,5 +1,9 @@
 # DevOps Portfolio
 
+[![CI](https://github.com/akshayhudke/devops-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/akshayhudke/devops-portfolio/actions/workflows/ci.yml)
+[![Deploy Frontend](https://github.com/akshayhudke/devops-portfolio/actions/workflows/deploy-frontend.yml/badge.svg)](https://github.com/akshayhudke/devops-portfolio/actions/workflows/deploy-frontend.yml)
+[![Deploy Backend](https://github.com/akshayhudke/devops-portfolio/actions/workflows/deploy-backend-render.yml/badge.svg)](https://github.com/akshayhudke/devops-portfolio/actions/workflows/deploy-backend-render.yml)
+
 A production-grade, data-driven portfolio that uses the same stack it
 advertises: React + Tailwind on the frontend, FastAPI on the backend, and
 container-first delivery with GitHub Actions.

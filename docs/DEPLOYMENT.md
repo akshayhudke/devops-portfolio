@@ -114,7 +114,7 @@ Path: Settings -> Secrets and variables -> Actions -> Variables tab -> New repos
 
 ### GitHub Actions secret
 Add the deploy hook secret for Render:
-- `RENDER_DEPLOY_HOOK_URL`: The full deploy hook URL from Render.
+- `RENDER_DEPLOY_HOOK_URL`: The full deploy hook URL from Render. # < https://devops-portfolio-iagu.onrender.com/ >
 Path: Settings -> Secrets and variables -> Actions -> Secrets tab -> New repository secret.
 
 ## 6. Render Setup (Backend)

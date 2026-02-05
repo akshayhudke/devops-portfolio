@@ -9,7 +9,9 @@ basics:
     automating, and operating cloud-native production systems on AWS and Azure.
     Strong background in infrastructure as code, CI/CD automation, container
     orchestration, and observability, with a focus on reliability, scalability,
-    and reducing operational toil.
+    and reducing operational toil. Proven experience supporting enterprise-scale
+    workloads at Volkswagen Group Technology Solutions and building distributed
+    data pipelines using Apache Spark.
   email: hudkeakshay@gmail.com
   phone: +91-7769858656
   linkedin: https://linkedin.com/in/akshayhudke
@@ -19,13 +21,18 @@ basics:
     country: India
 highlights:
   - 5+ years building and operating cloud-native systems on AWS and Azure.
-  - Infrastructure as code, CI/CD automation, and container orchestration focus.
-  - Reliability, scalability, and observability-first execution.
+  - Automation-first SRE practice focused on SLA/SLO reliability.
+  - Deep CI/CD, IaC, and observability experience for production systems.
 skills:
   - category: Cloud
     items:
       - AWS
       - Azure
+      - EKS
+      - ECS
+      - Fargate EC2
+      - IAM
+      - VPC
   - category: Platform & DevOps
     items:
       - Docker
@@ -37,6 +44,7 @@ skills:
       - Jenkins
       - Bamboo
       - Argo CD
+      - Argo Workflows
   - category: Observability
     items:
       - Dynatrace
@@ -52,25 +60,43 @@ experience:
   - company: Volkswagen Group Digital Solutions
     location: Pune, Maharashtra, India
     role: DevOps Engineer
-    start: ""
-    end: ""
+    start: 2023-10
+    end: Present
     bullets:
-      - Designed and operated cloud-native infrastructure on AWS and Azure.
-      - Engineered CI/CD systems using Docker and OpenShift.
-      - Automated workflows using Ansible and shell scripting.
-      - Implemented observability using Dynatrace.
-      - Built distributed ETL pipelines using Apache Spark.
-  - company: Thinkbridge Software
+      - Designed, built, and operated cloud-native infrastructure on AWS and Azure,
+        supporting high-availability, production-critical services and SLA/SLO objectives.
+      - Engineered CI/CD systems and managed containerized workloads using Docker and OpenShift,
+        enabling reliable deployments, fault tolerance, and consistent runtime environments.
+      - Automated infrastructure provisioning and operational workflows using Ansible and shell
+        scripting, reducing manual operational toil by ~40% and improving deployment consistency.
+      - Implemented comprehensive monitoring, alerting, and observability using Dynatrace,
+        enabling proactive issue detection and reducing mean time to resolution (MTTR) by ~30%.
+      - Owned production reliability by participating in incident response, root-cause analysis,
+        and post-incident reviews to continuously improve system stability.
+      - Designed and executed distributed ETL pipelines using Apache Spark to cleanse, enrich,
+        and integrate large-scale datasets into centralized analytics platforms.
+  - company: Thinkbridge Software Pvt Ltd
     location: Pune, Maharashtra, India
     role: Associate DevOps Engineer
-    start: ""
-    end: ""
+    start: 2021-02
+    end: 2023-10
     bullets:
-      - Managed AWS and Azure infrastructure.
-      - Implemented infrastructure as code using Terraform.
-      - Built CI/CD pipelines using GitHub Actions.
-      - Optimized workloads on ECS Fargate.
+      - Owned and operated cloud infrastructure across AWS and Azure, supporting scalable,
+        secure, production workloads.
+      - Implemented Infrastructure as Code (IaC) using Terraform, enabling consistent,
+        repeatable, and auditable infrastructure provisioning.
+      - Designed and maintained CI/CD pipelines using GitHub Actions, enabling automated build,
+        test, and deployment workflows.
+      - Built and managed on-demand GitHub Actions runners using AWS Lambda, improving pipeline
+        scalability and optimizing CI execution costs.
+      - Optimized containerized workloads on AWS ECS Fargate, improving resource utilization
+        and reducing overall infrastructure costs.
 education:
   - institution: Priyadarshini College of Engineering
     degree: Bachelor of Engineering
     end: 2019
+    location: Nagpur, India
+certifications:
+  - name: Microsoft Certified: Azure Fundamentals (AZ-900)
+    issuer: Microsoft
+    year: 2023
