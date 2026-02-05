@@ -37,7 +37,7 @@ Mac/Windows:
 ```
 docker build -f frontend/Dockerfile -t devops-portfolio-web frontend \
   --build-arg VITE_API_BASE=http://host.docker.internal:8000 \
-  --build-arg VITE_GITHUB_REPO=your-handle/devops-portfolio \
+  --build-arg VITE_GITHUB_REPO=akshayhudke/devops-portfolio \
   --build-arg VITE_GIT_COMMIT=local \
   --build-arg VITE_BUILD_TIME=local \
   --build-arg VITE_BASE_PATH=/
@@ -47,7 +47,7 @@ Linux (use host-gateway):
 ```
 docker build -f frontend/Dockerfile -t devops-portfolio-web frontend \
   --build-arg VITE_API_BASE=http://host.docker.internal:8000 \
-  --build-arg VITE_GITHUB_REPO=your-handle/devops-portfolio \
+  --build-arg VITE_GITHUB_REPO=akshayhudke/devops-portfolio \
   --build-arg VITE_GIT_COMMIT=local \
   --build-arg VITE_BUILD_TIME=local \
   --build-arg VITE_BASE_PATH=/
