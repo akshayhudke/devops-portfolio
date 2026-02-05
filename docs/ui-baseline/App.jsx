@@ -107,12 +107,6 @@ export default function App() {
   const meta = resume.meta || {};
   const apiStatus =
     health?.status === "ok" ? "Healthy" : health ? "Degraded" : "Unknown";
-  const apiTone =
-    health?.status === "ok"
-      ? "text-emerald-500"
-      : health
-        ? "text-amber-500"
-        : "text-muted";
 
   const contactItems = [
     { label: "Email", value: basics.email, href: basics.email ? `mailto:${basics.email}` : "" },
@@ -128,132 +122,91 @@ export default function App() {
     basics.location?.country,
   ].filter(Boolean);
 
-  const systemRows = [
-    { label: "API status", value: apiStatus, className: apiTone },
-    { label: "Build", value: buildTime, className: "font-mono text-xs text-text" },
-    { label: "Commit", value: gitCommit.slice(0, 7), className: "font-mono text-xs text-text" },
-    meta.updated
-      ? {
-          label: "Resume updated",
-          value: meta.updated,
-          className: "font-mono text-xs text-text",
-        }
-      : null,
-  ].filter(Boolean);
-
   return (
     <div className="min-h-screen pb-16">
-      <header className="container-edge pt-10">
-        <div className="card p-8 md:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6">
-              <div>
-                <p className="kicker">Profile</p>
-                <h1 className="text-4xl md:text-5xl font-semibold mt-4">
-                  {basics.name}
-                </h1>
-                <p className="text-lg text-muted mt-2">{basics.role}</p>
-              </div>
-              <p className="text-sm md:text-base leading-relaxed text-muted">
+      <header className="container-edge pt-12">
+        <div className="card p-8">
+          <div className="flex flex-wrap items-start justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="section-title">Profile</p>
+              <h1 className="text-4xl md:text-5xl font-semibold mt-3">
+                {basics.name}
+              </h1>
+              <p className="text-xl text-muted mt-3">{basics.role}</p>
+              <p className="text-sm leading-relaxed text-muted mt-4">
                 {basics.summary}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-6">
                 {meta.availability && <span className="tag">{meta.availability}</span>}
                 {meta.location && <span className="tag">{meta.location}</span>}
                 {meta.tagline && <span className="tag">{meta.tagline}</span>}
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {contactItems.map((item) => (
-                  <div
-                    key={item.label}
-                    className="card-quiet px-4 py-3 text-sm text-muted"
+            </div>
+            <div className="flex flex-col gap-3 sm:min-w-[220px]">
+              <button
+                type="button"
+                onClick={() => setDarkMode((prev) => !prev)}
+                className="inline-flex items-center justify-between gap-3 rounded-full border border-border px-4 py-2 text-sm text-muted hover:text-text transition"
+              >
+                <span>Theme</span>
+                <span className="font-mono text-xs">
+                  {darkMode ? "Dark" : "Light"}
+                </span>
+              </button>
+              {badgeUrl && (
+                <div className="rounded-xl border border-border px-4 py-3 text-sm text-muted">
+                  <div className="text-xs uppercase tracking-[0.2em] text-muted">CI</div>
+                  <img
+                    src={badgeUrl}
+                    alt="GitHub Actions build status"
+                    className="mt-2"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {contactItems.map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-start gap-2 rounded-xl border border-border px-4 py-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
+              >
+                <span>{item.label}</span>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    className="w-full break-all text-text hover:text-accent sm:w-auto sm:text-right sm:break-words"
                   >
-                    <div className="text-xs uppercase tracking-[0.25em] text-muted">
-                      {item.label}
-                    </div>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="mt-2 block break-all text-text hover:text-accent"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <div className="mt-2 break-all text-text">{item.value}</div>
-                    )}
-                  </div>
-                ))}
-                {locationParts.length > 0 && (
-                  <div className="card-quiet px-4 py-3 text-sm text-muted">
-                    <div className="text-xs uppercase tracking-[0.25em] text-muted">
-                      Location
-                    </div>
-                    <div className="mt-2 break-words text-text">
-                      {locationParts.join(", ")}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="card-quiet p-5">
-                <div className="flex items-center justify-between">
-                  <span className="spec-label">System Status</span>
-                  <span className="text-xs font-mono text-muted">UTC</span>
-                </div>
-                <div className="mt-4 space-y-3">
-                  {systemRows.map((row) => (
-                    <div key={row.label} className="flex items-center justify-between">
-                      <span className="text-sm text-muted">{row.label}</span>
-                      <span className={row.className}>{row.value}</span>
-                    </div>
-                  ))}
-                  {health?.timestamp && (
-                    <div className="text-xs text-muted font-mono">
-                      {health.timestamp}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="card-quiet p-5 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="spec-label">Controls</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setDarkMode((prev) => !prev)}
-                  className="inline-flex w-full items-center justify-between gap-3 rounded-full border border-border/60 px-4 py-2 text-sm text-muted hover:text-text transition"
-                >
-                  <span>Theme</span>
-                  <span className="font-mono text-xs">
-                    {darkMode ? "Dark" : "Light"}
+                    {item.value}
+                  </a>
+                ) : (
+                  <span className="w-full break-all text-text sm:w-auto sm:text-right sm:break-words">
+                    {item.value}
                   </span>
-                </button>
-                {badgeUrl && (
-                  <div>
-                    <div className="spec-label">CI status</div>
-                    <img
-                      src={badgeUrl}
-                      alt="GitHub Actions build status"
-                      className="mt-2"
-                    />
-                  </div>
                 )}
               </div>
-            </div>
+            ))}
+            {locationParts.length > 0 && (
+              <div className="flex flex-col items-start gap-2 rounded-xl border border-border px-4 py-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+                <span>Location</span>
+                <span className="w-full break-words text-text sm:w-auto sm:text-right">
+                  {locationParts.join(", ")}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </header>
 
-      <main className="container-edge mt-12 space-y-12">
+      <main className="container-edge mt-10 space-y-10">
         {safeArray(resume.highlights).length > 0 && (
           <section>
-            <p className="section-title">Highlights</p>
+            <div className="flex items-center justify-between">
+              <p className="section-title">Highlights</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               {resume.highlights.map((item) => (
-                <div key={item} className="card-quiet p-5 text-sm text-muted">
+                <div key={item} className="card p-4 text-sm text-muted">
                   {item}
                 </div>
               ))}
@@ -266,9 +219,11 @@ export default function App() {
             <p className="section-title">Impact</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               {resume.impact.map((item) => (
-                <div key={item.label} className="card-quiet p-5">
-                  <div className="spec-label">{item.label}</div>
-                  <div className="text-2xl font-semibold mt-3">{item.value}</div>
+                <div key={item.label} className="card p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-muted">
+                    {item.label}
+                  </div>
+                  <div className="text-xl font-semibold mt-2">{item.value}</div>
                 </div>
               ))}
             </div>
@@ -278,30 +233,26 @@ export default function App() {
         <section>
           <p className="section-title">Experience</p>
           <div className="mt-4 space-y-4">
-            {safeArray(resume.experience).map((role) => {
-              const roleMeta = [role.company, role.location, role.type]
-                .filter(Boolean)
-                .join(" • ");
-
-              return (
-                <div key={`${role.company}-${role.start}`} className="card-quiet p-6">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-lg font-semibold">{role.role}</h3>
-                      <p className="text-muted text-sm mt-1">{roleMeta}</p>
-                    </div>
-                    <div className="text-xs text-muted font-mono">
-                      {formatRange(role.start, role.end)}
-                    </div>
+            {safeArray(resume.experience).map((role) => (
+              <div key={`${role.company}-${role.start}`} className="card p-6">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">{role.role}</h3>
+                    <p className="text-muted text-sm mt-1">
+                      {role.company} • {role.location} • {role.type}
+                    </p>
                   </div>
-                  <ul className="mt-4 list-disc list-inside text-sm text-muted space-y-2">
-                    {safeArray(role.bullets).map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
+                  <div className="text-sm text-muted font-mono">
+                    {formatRange(role.start, role.end)}
+                  </div>
                 </div>
-              );
-            })}
+                <ul className="mt-4 list-disc list-inside text-sm text-muted space-y-2">
+                  {safeArray(role.bullets).map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -310,7 +261,7 @@ export default function App() {
             <p className="section-title">Projects</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               {safeArray(resume.projects).map((project) => (
-                <div key={project.name} className="card-quiet p-6">
+                <div key={project.name} className="card p-6">
                   <h3 className="text-lg font-semibold">{project.name}</h3>
                   <p className="text-sm text-muted mt-2">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-4">
@@ -338,7 +289,7 @@ export default function App() {
           <p className="section-title">Skills</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             {safeArray(resume.skills).map((group) => (
-              <div key={group.category} className="card-quiet p-6">
+              <div key={group.category} className="card p-6">
                 <h3 className="text-base font-semibold">{group.category}</h3>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {safeArray(group.items).map((skill) => (
@@ -353,7 +304,7 @@ export default function App() {
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="card-quiet p-6">
+          <div className="card p-6">
             <p className="section-title">Education</p>
             <div className="mt-4 space-y-4">
               {safeArray(resume.education).map((item) => (
@@ -366,7 +317,7 @@ export default function App() {
               ))}
             </div>
           </div>
-          <div className="card-quiet p-6">
+          <div className="card p-6">
             <p className="section-title">Certifications</p>
             <div className="mt-4 space-y-4">
               {safeArray(resume.certifications).map((item) => (
@@ -383,7 +334,7 @@ export default function App() {
       </main>
 
       <footer className="container-edge mt-12">
-        <div className="card-quiet px-6 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
+        <div className="card px-6 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
           <div className="flex flex-wrap items-center gap-3">
             <span>Deployment: {buildTime}</span>
             <span>Commit: {gitCommit.slice(0, 7)}</span>
