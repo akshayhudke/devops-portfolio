@@ -7,6 +7,7 @@ const healthUrl = `${apiBase}/health`;
 const buildTime = import.meta.env.VITE_BUILD_TIME || "unknown";
 const gitCommit = import.meta.env.VITE_GIT_COMMIT || "unknown";
 const repoSlug = import.meta.env.VITE_GITHUB_REPO || "";
+const resumeDownloadUrl = `${import.meta.env.BASE_URL}Akshay_Hudke_Platform_SRE_Engineer.pdf`;
 
 const formatRange = (start, end) => {
   if (!start && !end) return "";
@@ -26,8 +27,7 @@ export default function App() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isDark = stored ? stored === "dark" : prefersDark;
+    const isDark = stored ? stored === "dark" : false;
     setDarkMode(isDark);
   }, []);
 
@@ -113,6 +113,7 @@ export default function App() {
       : health
         ? "text-amber-500"
         : "text-muted";
+  const repoUrl = repoSlug ? `https://github.com/${repoSlug}` : "";
 
   const contactItems = [
     { label: "Email", value: basics.email, href: basics.email ? `mailto:${basics.email}` : "" },
@@ -128,120 +129,87 @@ export default function App() {
     basics.location?.country,
   ].filter(Boolean);
 
-  const systemRows = [
-    { label: "API status", value: apiStatus, className: apiTone },
-    { label: "Build", value: buildTime, className: "font-mono text-xs text-text" },
-    { label: "Commit", value: gitCommit.slice(0, 7), className: "font-mono text-xs text-text" },
-    meta.updated
-      ? {
-          label: "Resume updated",
-          value: meta.updated,
-          className: "font-mono text-xs text-text",
-        }
-      : null,
-  ].filter(Boolean);
-
   return (
     <div className="min-h-screen pb-16">
       <header className="container-edge pt-10">
         <div className="card p-8 md:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6">
-              <div>
-                <p className="kicker">Profile</p>
-                <h1 className="text-4xl md:text-5xl font-semibold mt-4">
-                  {basics.name}
-                </h1>
-                <p className="text-lg text-muted mt-2">{basics.role}</p>
-              </div>
-              <p className="text-sm md:text-base leading-relaxed text-muted">
-                {basics.summary}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {meta.availability && <span className="tag">{meta.availability}</span>}
-                {meta.location && <span className="tag">{meta.location}</span>}
-                {meta.tagline && <span className="tag">{meta.tagline}</span>}
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {contactItems.map((item) => (
-                  <div
-                    key={item.label}
-                    className="card-quiet px-4 py-3 text-sm text-muted"
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <p className="kicker">Profile</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href={resumeDownloadUrl}
+                  download
+                  className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-text hover:text-accent transition"
+                >
+                  Download CV
+                </a>
+                {repoUrl && (
+                  <a
+                    href={repoUrl}
+                    className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-muted hover:text-text transition"
                   >
-                    <div className="text-xs uppercase tracking-[0.25em] text-muted">
-                      {item.label}
-                    </div>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="mt-2 block break-all text-text hover:text-accent"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <div className="mt-2 break-all text-text">{item.value}</div>
-                    )}
-                  </div>
-                ))}
-                {locationParts.length > 0 && (
-                  <div className="card-quiet px-4 py-3 text-sm text-muted">
-                    <div className="text-xs uppercase tracking-[0.25em] text-muted">
-                      Location
-                    </div>
-                    <div className="mt-2 break-words text-text">
-                      {locationParts.join(", ")}
-                    </div>
-                  </div>
+                    GitHub Repo
+                  </a>
                 )}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="card-quiet p-5">
-                <div className="flex items-center justify-between">
-                  <span className="spec-label">System Status</span>
-                  <span className="text-xs font-mono text-muted">UTC</span>
-                </div>
-                <div className="mt-4 space-y-3">
-                  {systemRows.map((row) => (
-                    <div key={row.label} className="flex items-center justify-between">
-                      <span className="text-sm text-muted">{row.label}</span>
-                      <span className={row.className}>{row.value}</span>
-                    </div>
-                  ))}
-                  {health?.timestamp && (
-                    <div className="text-xs text-muted font-mono">
-                      {health.timestamp}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="card-quiet p-5 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="spec-label">Controls</span>
-                </div>
                 <button
                   type="button"
                   onClick={() => setDarkMode((prev) => !prev)}
-                  className="inline-flex w-full items-center justify-between gap-3 rounded-full border border-border/60 px-4 py-2 text-sm text-muted hover:text-text transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-4 py-2 text-xs font-medium text-muted hover:text-text transition"
                 >
                   <span>Theme</span>
-                  <span className="font-mono text-xs">
+                  <span className="font-mono text-[11px]">
                     {darkMode ? "Dark" : "Light"}
                   </span>
                 </button>
-                {badgeUrl && (
-                  <div>
-                    <div className="spec-label">CI status</div>
-                    <img
-                      src={badgeUrl}
-                      alt="GitHub Actions build status"
-                      className="mt-2"
-                    />
-                  </div>
-                )}
               </div>
+            </div>
+
+            <div>
+              <h1 className="text-4xl md:text-5xl font-semibold mt-4">
+                {basics.name}
+              </h1>
+              <p className="text-lg text-muted mt-2">{basics.role}</p>
+            </div>
+            <p className="text-sm md:text-base leading-relaxed text-muted">
+              {basics.summary}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {meta.availability && <span className="tag">{meta.availability}</span>}
+              {meta.location && <span className="tag">{meta.location}</span>}
+              {meta.tagline && <span className="tag">{meta.tagline}</span>}
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {contactItems.map((item) => (
+                <div
+                  key={item.label}
+                  className="card-quiet px-4 py-3 text-sm text-muted"
+                >
+                  <div className="text-xs uppercase tracking-[0.25em] text-muted">
+                    {item.label}
+                  </div>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="mt-2 block break-all text-text hover:text-accent"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <div className="mt-2 break-all text-text">{item.value}</div>
+                  )}
+                </div>
+              ))}
+              {locationParts.length > 0 && (
+                <div className="card-quiet px-4 py-3 text-sm text-muted">
+                  <div className="text-xs uppercase tracking-[0.25em] text-muted">
+                    Location
+                  </div>
+                  <div className="mt-2 break-words text-text">
+                    {locationParts.join(", ")}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -383,16 +351,25 @@ export default function App() {
       </main>
 
       <footer className="container-edge mt-12">
-        <div className="card-quiet px-6 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
-          <div className="flex flex-wrap items-center gap-3">
-            <span>Deployment: {buildTime}</span>
-            <span>Commit: {gitCommit.slice(0, 7)}</span>
-            {meta.updated && <span>Resume updated: {meta.updated}</span>}
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <span>API: {apiStatus}</span>
-            {health?.timestamp && (
-              <span className="font-mono">{health.timestamp}</span>
+        <div className="card-quiet px-6 py-5 text-xs text-muted">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap items-center gap-3">
+              <span>Deployment: {buildTime}</span>
+              <span>Commit: {gitCommit.slice(0, 7)}</span>
+              {meta.updated && <span>Resume updated: {meta.updated}</span>}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className={`font-medium ${apiTone}`}>API: {apiStatus}</span>
+              {health?.timestamp && (
+                <span className="font-mono">{health.timestamp}</span>
+              )}
+            </div>
+            {badgeUrl && (
+              <img
+                src={badgeUrl}
+                alt="GitHub Actions build status"
+                className="h-5"
+              />
             )}
           </div>
         </div>
