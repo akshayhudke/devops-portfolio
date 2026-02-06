@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: 237 242 255;
+  --surface: 255 255 255;
+  --text: 15 23 42;
+  --muted: 90 102 122;
+  --accent: 11 92 255;
+  --accent-2: 120 180 255;
+  --border: 216 226 242;
+  --btn-contrast-bg: 15 23 42;
+  --btn-contrast-text: 255 255 255;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: 7 10 18;
+  --surface: 16 20 30;
+  --text: 229 231 240;
+  --muted: 141 149 166;
+  --accent: 90 170 255;
+  --accent-2: 56 189 248;
+  --border: 28 38 54;
+  --btn-contrast-bg: 229 231 240;
+  --btn-contrast-text: 15 23 42;
+}
+
+body {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  background: radial-gradient(circle at 15% 10%, rgba(158, 198, 255, 0.5), transparent 55%),
+    radial-gradient(circle at 85% 0%, rgba(208, 226, 255, 0.8), transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(194, 215, 255, 0.6), transparent 55%),
+    linear-gradient(180deg, rgba(238, 244, 255, 0.98), rgba(231, 238, 252, 0.98));
+}
+
+.dark body {
+  background: radial-gradient(circle at 15% 10%, rgba(90, 170, 255, 0.2), transparent 50%),
+    radial-gradient(circle at 85% 0%, rgba(56, 189, 248, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(34, 211, 238, 0.16), transparent 50%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0.98), rgba(6, 9, 16, 0.98));
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.3);
+}
+
+a {
+  transition: color 0.2s ease;
+}
+
+.container-edge {
+  @apply max-w-6xl mx-auto px-6 md:px-10;
+}
+
+.card {
+  @apply rounded-[36px] border border-border/70 bg-surface shadow-soft;
+}
+
+.card-quiet {
+  @apply rounded-[28px] border border-border/70 bg-surface;
+}
+
+.tag {
+  @apply inline-flex items-center rounded-full border border-border/80 bg-surface px-3 py-1 text-xs font-medium text-muted;
+}
+
+.section-title {
+  @apply text-[11px] uppercase tracking-[0.4em] text-muted;
+}
+
+.kicker {
+  @apply text-[11px] uppercase tracking-[0.4em] text-muted;
+}
+
+.spec-label {
+  @apply text-[11px] uppercase tracking-[0.3em] text-muted;
+}
+
+.spec-value {
+  @apply text-sm font-medium text-text;
+}
+
+.btn-base {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition;
+}
+
+.btn-primary {
+  @apply btn-base shadow-soft;
+  background-color: rgb(var(--accent));
+  color: white;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  @apply btn-base border;
+  border-color: rgba(var(--accent), 0.35);
+  background-color: rgba(var(--accent), 0.12);
+  color: rgb(var(--accent));
+}
+
+.btn-contrast {
+  @apply btn-base shadow-soft;
+  background-color: rgb(var(--btn-contrast-bg));
+  color: rgb(var(--btn-contrast-text));
+}

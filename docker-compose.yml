@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      RESUME_PATH: /app/resume.yaml
+      CORS_ORIGINS: http://localhost:8080,http://localhost:5173
+      BUILD_TIME: local
+      GIT_COMMIT: local
+    volumes:
+      - ./resume.yaml:/app/resume.yaml:ro
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: http://localhost:8000
+        VITE_GITHUB_REPO: your-handle/devops-portfolio
+        VITE_GIT_COMMIT: local
+        VITE_BUILD_TIME: local
+        VITE_BASE_PATH: /
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

@@ -1,0 +1,102 @@
+meta:
+  updated: 2026-02-05
+  build_badge_workflow: ci.yml
+basics:
+  name: Akshay Hudke
+  role: Platform / Site Reliability Engineer
+  summary: >-
+    Platform / Site Reliability Engineer with 5+ years of experience designing,
+    automating, and operating cloud-native production systems on AWS and Azure.
+    Strong background in infrastructure as code, CI/CD automation, container
+    orchestration, and observability, with a focus on reliability, scalability,
+    and reducing operational toil. Proven experience supporting enterprise-scale
+    workloads at Volkswagen Group Technology Solutions and building distributed
+    data pipelines using Apache Spark.
+  email: hudkeakshay@gmail.com
+  phone: +91-7769858656
+  linkedin: https://linkedin.com/in/akshayhudke
+  location:
+    city: Pune
+    region: Maharashtra
+    country: India
+highlights:
+  - 5+ years building and operating cloud-native systems on AWS and Azure.
+  - Automation-first SRE practice focused on SLA/SLO reliability.
+  - Deep CI/CD, IaC, and observability experience for production systems.
+skills:
+  - category: Cloud
+    items:
+      - AWS
+      - Azure
+      - EKS
+      - ECS
+      - Fargate EC2
+      - IAM
+      - VPC
+  - category: Platform & DevOps
+    items:
+      - Docker
+      - Kubernetes
+      - OpenShift
+      - Terraform
+      - Ansible
+      - GitHub Actions
+      - Jenkins
+      - Bamboo
+      - Argo CD
+      - Argo Workflows
+  - category: Observability
+    items:
+      - Dynatrace
+      - Grafana
+  - category: Data Engineering
+    items:
+      - Apache Spark
+  - category: Scripting
+    items:
+      - Python
+      - Bash
+experience:
+  - company: Volkswagen Group Digital Solutions
+    location: Pune, Maharashtra, India
+    role: DevOps Engineer
+    start: 2023-10
+    end: Present
+    bullets:
+      - Designed, built, and operated cloud-native infrastructure on AWS and Azure,
+        supporting high-availability, production-critical services and SLA/SLO objectives.
+      - Engineered CI/CD systems and managed containerized workloads using Docker and OpenShift,
+        enabling reliable deployments, fault tolerance, and consistent runtime environments.
+      - Automated infrastructure provisioning and operational workflows using Ansible and shell
+        scripting, reducing manual operational toil by ~40% and improving deployment consistency.
+      - Implemented comprehensive monitoring, alerting, and observability using Dynatrace,
+        enabling proactive issue detection and reducing mean time to resolution (MTTR) by ~30%.
+      - Owned production reliability by participating in incident response, root-cause analysis,
+        and post-incident reviews to continuously improve system stability.
+      - Designed and executed distributed ETL pipelines using Apache Spark to cleanse, enrich,
+        and integrate large-scale datasets into centralized analytics platforms.
+  - company: Thinkbridge Software Pvt Ltd
+    location: Pune, Maharashtra, India
+    role: Associate DevOps Engineer
+    start: 2021-02
+    end: 2023-10
+    bullets:
+      - Owned and operated cloud infrastructure across AWS and Azure, supporting scalable,
+        secure, production workloads.
+      - Implemented Infrastructure as Code (IaC) using Terraform, enabling consistent,
+        repeatable, and auditable infrastructure provisioning.
+      - Designed and maintained CI/CD pipelines using GitHub Actions, enabling automated build,
+        test, and deployment workflows.
+      - Built and managed on-demand GitHub Actions runners using AWS Lambda, improving pipeline
+        scalability and optimizing CI execution costs.
+      - Optimized containerized workloads on AWS ECS Fargate, improving resource utilization
+        and reducing overall infrastructure costs.
+education:
+  - institution: Priyadarshini College of Engineering
+    degree: Bachelor of Engineering
+    end: 2019
+    location: Nagpur, India
+certifications:
+  - name: "Microsoft Certified: Azure Fundamentals (AZ-900)"
+    issuer: Microsoft
+    year: 2023
